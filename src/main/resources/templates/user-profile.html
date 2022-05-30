@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal">User Profile</h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="/logout">Log out</a>
+    </nav>
+</div>
+<div th:if="${session.containsKey('userDetails')}" >
+    <div class="">
+        <h3 th:text="${'Dear User :'+userDetails.getName() + ' ' +userDetails.getSurname()}"></h3>
+        <h3  th:text="${fileExistence?.getFileName()}"></h3>
+        <img class="myimage" th:src="${fileExistence?.getFileName()}">
+    </div>
+    <div class="user-body">
+        <p>You can use below section to upload a document</p>
+        <form action="/file" method="post" enctype="multipart/form-data">
+            <input type="file" name="myfile"/> <br/><br/>
+            <input type="submit" value="Submit"/>
+        </form>
+    </div>
+</div>
+
+<span class="info" th:text="${status}"></span>
+
+
+</body>
+</html>

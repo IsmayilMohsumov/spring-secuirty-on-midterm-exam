@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p th:text="${greeting}">Spring is good, Hello</p>
+
+<form th:action="@{/test/test-register}" th:object="${user}" method="POST">
+    User Name:
+    <label th:if="*{getName() == 'Isi'}">Adim Ismayildi</label>
+    <label th:unless="*{getName() == 'Ismayil'}">Duzdu</label>
+    <input type="text" th:field="*{name}" />
+    <br/> Password:
+    <input type="password" th:field="*{surname}" th:text="*{getSurname()} ?: 'Please provide surname'" />
+    <br/> Confirm:
+    <input type="password" th:field="*{email}" th:text="*{getEmail()}"/>
+    <br/> Email:
+    <input type="text" th:field="*{password}" />
+    <br/>
+    <input type="submit" value="Submit" />
+</form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+</head>
+<body>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal">Admin Profile</h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="/logout">Log out</a>
+    </nav>
+</div>
+<div class="user-block">
+    <h3 th:text="${'Dear Admin :'+userDetails.getName() + ' ' +userDetails.getSurname()}"> </h3>
+
+</div>
+<br>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>FileName</th>
+        <th>Username</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:if="${session.containsKey('filesForAdmin')}" th:each=" file : ${session.get('filesForAdmin')}">
+        <td th:text="${file.getId()}" ></td>
+        <td th:text="${file.getFileName()}" ></td>
+        <td th:text="${file.getUser().getName()}" ></td>
+        <td ><a th:href="${file.getFileName()}">Open link</a></td>
+    </tr>
+</table>
+
+</body>
+</html>
